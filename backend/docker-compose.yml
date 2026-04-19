@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: transit_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: transit
+      POSTGRES_USER: transit_user
+      POSTGRES_PASSWORD: transit_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U transit_user -d transit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: transit_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://transit_user:transit_pass@db:5432/transit
+      CORS_ORIGINS: "http://localhost:5173,http://127.0.0.1:5173,http://localhost:8080,http://127.0.0.1:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+      - ./scripts:/app/scripts
+      - ../bus_monastir_sousse.xlsx:/app/data/bus_monastir_sousse.xlsx
+      - ../bus_sousse_monastir.xlsx:/app/data/bus_sousse_monastir.xlsx
+      - ../train_monastir_sousse.xlsx:/app/data/train_monastir_sousse.xlsx
+      - ../train_sousse_monastir.xlsx:/app/data/train_sousse_monastir.xlsx
+
+volumes:
+  pgdata:
