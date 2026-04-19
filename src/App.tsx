@@ -9,6 +9,8 @@ import RouteResults from "./pages/RouteResults";
 import CarpoolMarketplace from "./pages/CarpoolMarketplace";
 import RideDetails from "./pages/RideDetails";
 import Profile from "./pages/Profile";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -20,8 +22,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/planner" element={<Home />} />
             <Route path="/routes" element={<RouteResults />} />
             <Route path="/carpools" element={<CarpoolMarketplace />} />
             <Route path="/ride" element={<RideDetails />} />

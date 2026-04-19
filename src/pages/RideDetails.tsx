@@ -94,7 +94,7 @@ const RideDetails = () => {
       </Button>
 
       <div className="mt-6 text-center">
-        <Button variant="ghost" onClick={() => navigate("/")} className="text-muted-foreground">
+        <Button variant="ghost" onClick={() => navigate("/planner")} className="text-muted-foreground">
           Plan another trip
         </Button>
       </div>

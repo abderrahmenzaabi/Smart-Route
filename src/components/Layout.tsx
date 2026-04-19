@@ -3,7 +3,7 @@ import { Home, Car, Navigation as NavIcon, User, Route as RouteIcon } from "luci
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { to: "/", label: "Home", icon: Home, end: true },
+  { to: "/planner", label: "Home", icon: Home, end: true },
   { to: "/carpools", label: "Carpools", icon: Car },
   { to: "/ride", label: "Rides", icon: NavIcon },
   { to: "/profile", label: "Profile", icon: User },

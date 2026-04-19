@@ -50,7 +50,7 @@ const Profile = () => {
           <h2 className="font-display font-semibold text-lg flex items-center gap-2">
             <Bookmark className="w-4 h-4 text-primary" /> Saved routes
           </h2>
-          <Button variant="ghost" size="sm" onClick={() => navigate("/")} className="text-primary gap-1">
+          <Button variant="ghost" size="sm" onClick={() => navigate("/planner")} className="text-primary gap-1">
             <Plus className="w-4 h-4" /> Add
           </Button>
         </div>
